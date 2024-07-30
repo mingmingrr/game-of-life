@@ -12,14 +12,16 @@ FetchContent_Declare(dynamic_bitset
 	GIT_TAG        ac60c9e6c534db7457ca6af02fdedbe74ad60968)
 FetchContent_MakeAvailable(dynamic_bitset)
 
-find_package(Curses REQUIRED)
+set(CURSES_NEED_WIDE TRUE)
+include(FindCurses)
+# find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
 add_executable(life
 	life.cpp)
 target_link_libraries(life
 	dynamic_bitset
-	${CURSES_LIBRARIES})
+	${NCURSES_LIBRARIES})
 # target_include_directories(life
 	# PRIVATE src/pyrsistent_extras)
 
